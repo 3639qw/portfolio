@@ -1,4 +1,4 @@
-# [Portfolio]
+# Portfolio
 
 Portfolio for JUYONG
 
