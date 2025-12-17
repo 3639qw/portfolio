@@ -5,22 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>이력서</title>
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
             background-color: #f8f9fa;
             display: flex;
             height: 100vh;
+            overflow: hidden;
         }
 
-        /* 사이드바 */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: teal;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         .sidebar {
             width: 200px;
             background-color: #fff;
             padding: 20px;
             border-right: 1px solid #ddd;
             overflow-y: auto;
+            height: 100vh;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            align-self: flex-start;
+            transition: left 0.3s ease;
         }
 
         .sidebar h3 {
@@ -37,12 +61,16 @@
         .sidebar ul li {
             margin: 10px 0;
             cursor: pointer;
-            color: #333;
         }
 
         .sidebar ul li a {
             color: #333;
             text-decoration: none;
+        }
+
+        .sidebar ul li a.active {
+            font-weight: bold;
+            color: teal;
         }
 
         .sidebar ul li a:hover {
@@ -53,6 +81,9 @@
             flex: 1;
             padding: 40px;
             background-color: #fff;
+            overflow-y: auto;
+            height: 100vh;
+            box-sizing: border-box;
         }
 
         .section {
@@ -100,6 +131,27 @@
             word-break: break-all;
         }
 
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                z-index: 1000;
+                background: white;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            body {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -118,35 +170,46 @@
     <div class="section">
         <div class="profile">
             <div>
-                <div class="highlight">이주용 - 이력서</div>
+                <div class="highlight">이주용 포트폴리오</div>
                 <div class="subinfo">백엔드 개발자</div>
                 <p>이메일: 3639qw@gmail.com</p>
-                <p>
-                    노션 이력서:
-                    <a href="https://www.dongyang.ac.kr" target="_blank">
-                        Notion 이력서 링크
-                    </a>
-                </p>
             </div>
-            <img src="profile.jpg" alt="프로필 사진" class="photo" />
+            <img src="profile.JPEG" alt="프로필 사진" class="photo" />
         </div>
     </div>
 
     <div class="section" id="skills">
         <h2>기술 스택</h2>
-        <p>Back End: PHP, MYSQL, C++, C#</p>
+        <p><strong>Front End</strong> : Next.js, React, jQuery, HTML5/CSS</p>
+        <p><strong>Backt End</strong> : Spring, Java, PHP</p>
+        <p><strong>시스템(인프라) 엔지니어</strong> : Linux, Raspberry PI, Arduino</p>
+        <p><strong>DB</strong> : MYSQL, Oracle DB</p>
     </div>
 
     <div class="section" id="career">
         <h2>경력</h2>
         <p><strong>졸업작품 프로젝트</strong> - 농사와 전투를 접목한 게임 (2025.03 ~ 2025.12)</p>
+        <p><strong>기업회계 ERP</strong> - 기업의 재무회계, 인사관리 웹 프로그램 (2025.09 ~ 2025.12)</p>
+        <p><strong>업무용 파일관리</strong> - 서면으로 관리되는 파일을 전자적으로 관리하는 웹 프로그램 (2025.10 ~ 2025.12)</p>
+        <p><strong>부동산등기 챗봇</strong> - 개인이 부동산등기를 스스로 처리하기 위한 AI 챗봇(2025.09 ~ 2025.11)</p>
     </div>
 
     <div class="section" id="portpolio">
         <h2>포트폴리오</h2>
         <p><strong>URL</strong> </p>
         <div class="url-box">
-            https://3639qw.github.io/portfolio/
+            <img src="ledger.png" alt="기업회계 erp" class="photo" style="width: 400px; height: 240px;" /><br>
+            <strong>기업회계 ERP</strong><br>
+            기업의 회계에 필요한 재무회계, 거래처 수금관리, 인사/급여 등 회계업무에 전반적으로 요구되는 요소
+            <br>
+            <img src="filehub.png" alt="업무용 파일관리" class="photo" style="width: 400px; height: 240px;" /><br>
+            <strong>업무용 파일관리</strong><br>
+            업무용으로 생산되는 서면을 전자적 pdf, 이미지 형태로 변환하여 미리보기 및 다운로드와 관리 서비스 제공
+            <br>
+            <img src="chatbot.png" alt="부동산등기 챗봇" class="photo" style="width: 400px; height: 320px;" /><br>
+            <strong>부동산등기 챗봇</strong><br>
+            개인이 부동산등기를 스스로 할 수 있도록 법률정보를 광범위하게 수집하여 등기에 필요한 서면, 법규 정보 등을 제공
+            <br>
         </div>
     </div>
 
@@ -157,9 +220,40 @@
 
     <div class="section" id="cerificate">
         <h2>수상 및 자격</h2>
-        <p><strong>정보처리기능사</strong>(2021)</p>
+        <p><strong>정보처리기능사</strong> 2021</p>
+        <p><strong>해기사(소형선박)</strong> 2023</p>
+        <p><strong>동력수상레저기구조종면허</strong> 2023</p>
+        <p><strong>무선종사자기술자격(제한무선통신)</strong> 2023</p>
+        <p><strong>건설기계조종면허(지게차)</strong> 2023</p>
     </div>
 
 </div>
+<script>
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.sidebar ul li a');
+    const content = document.querySelector('.content');
+
+    content.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (content.scrollTop >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    function toggleMenu() {
+        document.querySelector('.sidebar').classList.toggle('open');
+    }
+</script>
 </body>
 </html>
